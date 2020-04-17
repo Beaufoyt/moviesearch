@@ -17,6 +17,10 @@ const addMovies = (moviesList, newMovies, page) => {
     return (newMovies);
 };
 
+const resetMovies = (moviesList) => {
+    return moviesList && moviesList.length ? moviesList.slice(0, 20) : null;
+};
+
 const movies = (state = defaultState, action) => {
     switch (action.type) {
     case types.MOVIES_IS_LOADING:
@@ -31,6 +35,11 @@ const movies = (state = defaultState, action) => {
             movies: addMovies(state.movies, action.moviesResult.results, action.page),
             moviesCount: action.moviesResult.total_results,
             currentSearchQuery: action.currentSearchQuery,
+        });
+
+    case types.MOVIES_RESET:
+        return newState(state, {
+            movies: resetMovies(state.movies),
         });
 
     case types.MOVIES_ERROR:

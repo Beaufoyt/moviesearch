@@ -13,6 +13,7 @@ export const moviesSuccess = (moviesResult, currentSearchQuery, page) => ({
 });
 export const moviesError = (errorMessage) => ({ type: types.MOVIES_ERROR, errorMessage });
 export const moviesCancel = () => ({ type: types.MOVIES_CANCEL });
+export const moviesReset = () => ({ type: types.MOVIES_RESET });
 
 export const fetchMovies = (query, page) => {
     return async (dispatch) => {
@@ -38,6 +39,13 @@ export const fetchMovies = (query, page) => {
                 dispatch(moviesError(getErrorMessage(err)));
             }
         }
+    };
+};
+
+export const resetMovieList = () => {
+    return async (dispatch) => {
+        resetMovieList();
+        dispatch(moviesReset());
     };
 };
 

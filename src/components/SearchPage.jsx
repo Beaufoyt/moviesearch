@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchMovies } from '../actions/movies';
+import { fetchMovies, resetMovieList } from '../actions/movies';
 import { toObject, build } from '../helpers/urlQuery';
 import { getItem } from '../helpers/storage';
 
@@ -19,6 +19,14 @@ class SearchPage extends PureComponent {
         const { location, history, currentSearchQuery } = props;
 
         history.replace(build(location.pathname, { query: currentSearchQuery }));
+    }
+
+    componentWillUnmount() {
+        const { movies } = this.props;
+
+        if (movies && movies.length > 20) {
+            this.props.resetMovieList();
+        }
     }
 
     handleSearch = (query, page) => {
@@ -68,6 +76,7 @@ class SearchPage extends PureComponent {
 
 SearchPage.propTypes = {
     moviesFetch: PropTypes.func.isRequired,
+    resetMovieList: PropTypes.func.isRequired,
     movies: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number,
@@ -101,6 +110,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => (
     bindActionCreators({
         moviesFetch: fetchMovies,
+        resetMovieList,
     }, dispatch)
 );
 
