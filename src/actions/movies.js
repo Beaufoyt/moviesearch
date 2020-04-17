@@ -8,7 +8,9 @@ const { CancelToken } = axios;
 let cancelMovies;
 
 export const moviesIsLoading = () => ({ type: types.MOVIES_IS_LOADING });
-export const moviesSuccess = (movies) => ({ type: types.MOVIES_SUCCESS, movies });
+export const moviesSuccess = (moviesResult, currentSearchQuery, page) => ({
+    type: types.MOVIES_SUCCESS, moviesResult, currentSearchQuery, page,
+});
 export const moviesError = (errorMessage) => ({ type: types.MOVIES_ERROR, errorMessage });
 export const moviesCancel = () => ({ type: types.MOVIES_CANCEL });
 

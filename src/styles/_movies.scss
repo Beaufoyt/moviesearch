@@ -1,0 +1,143 @@
+.results-grid {
+    max-width: 1200px;
+    margin: auto;
+    text-align: left;
+
+    .results-grid-tiles {
+        padding-top: 26px;
+        position: relative;
+
+        h3 {
+            margin: 0;
+            top: 0;
+            position: absolute;
+            padding-left: 10px;
+        }
+    }
+}
+
+.results-tile {
+    padding: 5px;
+    display: inline-grid;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 0;
+    background-color: #fafafa;
+    font-family: inherit;
+    outline: none;
+    border: 1px solid transparent;
+
+    &:focus {
+        border-color: $gray;
+    }
+
+    &:hover {
+        .results-tile-header {
+            background-color: $bg-dark;
+        }
+    }
+
+    .results-tile-header {
+        position: relative;
+        height: 50px;
+        background-color: lighten($bg-dark, 5);
+        transition: background-color .1s linear;
+        color: white;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+
+        span {
+            padding: 10px;
+            left: 0;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            &:hover {
+                white-space: inherit;
+            }
+        }
+    }
+
+    .results-tile-content {
+        height: 200px;
+    }
+
+    .results-tile-footer {
+        font-weight: 500;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        transition: background-color .1s linear;
+        background-color: white;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        padding: 0 6px;
+
+        .results-tile-rating {
+            float: left;
+
+            .vote-count {
+                font-style: italic;
+                font-size: 14px;
+                color: $bg-dark;
+            }
+        }
+
+        .results-tile-year {
+            float: right;
+            font-weight: 400;
+        }
+    }
+
+    .results-tile-img-container {
+        height: 200px;
+        width: 133px;
+        background-color: $gray-dark;
+        display: inline-block;
+        position: relative;
+        float: left;
+
+        .results-tile-no-img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+            z-index: 0;
+            color: white;
+        }
+
+        img {
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+        }
+    }
+
+    .results-tile-description {
+        display: inline-block;
+        width: calc(100% - 133px);
+        text-align: left;
+        height: 200px;
+        float: right;
+        background-color: white;
+        transition: background-color .1s linear;
+
+        p {
+            margin: 0;
+            display: -webkit-box;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 9;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            padding: 5px 10px 0 10px;
+        }
+    }
+}
