@@ -48,10 +48,12 @@
         "html-webpack-plugin": "^4.2.0",
         "jest": "^25.3.0",
         "node-sass": "^4.13.1",
+        "pre-commit": "^1.2.2",
         "sass-loader": "^8.0.2",
         "style-loader": "^1.1.3",
         "webpack-cli": "^3.3.11",
         "webpack-dev-server": "^3.10.3",
         "webpack-merge": "^4.2.2"
-    }
+    },
+    "precommit": "test"
 }
