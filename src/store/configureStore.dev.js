@@ -7,6 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import monitorReducersEnhancer from '../enhancers/monitorReducers';
 import loggerMiddleware from '../middleware/logger';
+import rootReducer from '../reducers';
 
 export default function configureStore() {
     const middlewares = [loggerMiddleware, thunkMiddleware];
@@ -16,11 +17,11 @@ export default function configureStore() {
     const composedEnhancers = compose(...enhancers);
 
     const store = createStore(
-        () => {},
+        rootReducer,
         composedEnhancers,
     );
 
-    // module.hot.accept('../reducers', () => store.replaceReducer({}));
+    module.hot.accept('../reducers', () => store.replaceReducer(rootReducer));
 
     return store;
 }
