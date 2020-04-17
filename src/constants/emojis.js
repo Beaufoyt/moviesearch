@@ -15,6 +15,14 @@ const emojis = {
         label: 'Point Up',
         emoji: '☝️',
     },
+    sadFace: {
+        label: 'Sad Face',
+        emoji: '😔',
+    },
+    star: {
+        label: 'star',
+        emoji: '⭐',
+    },
 };
 
 export default emojis;

@@ -37,7 +37,7 @@ class SearchPage extends PureComponent {
 
     renderNoResults = () => {
         return this.props.moviesCount === 0
-            ? <NoResults title="No movies found" emoji="cry" />
+            ? <NoResults title="No movies found" emoji="sadFace" />
             : this.props.moviesIsLoading ? <NoResults title="Finding movies" emoji="eyes" />
                 : <NoResults title="Type anything in the search box above" emoji="pointUp" />;
     }
