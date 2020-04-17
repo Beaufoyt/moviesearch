@@ -46,6 +46,42 @@ describe('Given a Numbers Component', () => {
         expect(resultsTile.state('currentFavourite')).toEqual(false);
     });
 
+    describe('when results tile is clicked', () => {
+        beforeEach(() => {
+            selectMovie.mockReset();
+            const resultsTileButton = resultsTile.find('button').first();
+
+            resultsTileButton.simulate('click', movie);
+        });
+
+        it('should call select movie with the passed in movie', () => {
+            expect(selectMovie.mock.calls.length).toEqual(1);
+            expect(selectMovie.mock.calls[0][0].id).toEqual(movie.id);
+        });
+    });
+
+    describe('when the favourite button is clicked', () => {
+        beforeEach(() => {
+            toggleMovie.mockReset();
+            const favouriteButton = resultsTile.find('.btn.btn-toggle-favourite').first();
+
+            favouriteButton.simulate('click', {
+                preventDefault: () => {},
+                stopPropagation: () => {},
+            }, movie);
+        });
+
+        it('should set favourite in the state to the opposite of current favourite', () => {
+            expect(resultsTile.state('currentFavourite')).toEqual(true);
+        });
+
+        it('should call toggle movie with the opposite of current favourite and the passed in movie', () => {
+            expect(toggleMovie.mock.calls.length).toEqual(1);
+            expect(toggleMovie.mock.calls[0][0]).toEqual(true);
+            expect(toggleMovie.mock.calls[0][1].id).toEqual(movie.id);
+        });
+    });
+
     describe('when the results tile is passed favourited', () => {
         beforeEach(() => {
             resultsTile = render(true);
