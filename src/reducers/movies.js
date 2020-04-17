@@ -5,6 +5,7 @@ const defaultState = {
     movies: null,
     loading: false,
     error: null,
+    currentSearchQuery: '',
 };
 
 const movies = (state = defaultState, action) => {
