@@ -21,3 +21,10 @@ body, html, .app {
     right: 0;
     bottom: 0;
 }
+
+.page-container {
+    text-align: center;
+    padding: 20px;
+    min-height: calc(100% - 116px);
+    margin-top: $header-height;
+}
