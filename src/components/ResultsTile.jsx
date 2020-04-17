@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import PureComponent from './PureComponent';
 
-class ResultsGrid extends PureComponent {
+class ResultsTile extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -82,7 +82,7 @@ class ResultsGrid extends PureComponent {
     }
 }
 
-ResultsGrid.propTypes = {
+ResultsTile.propTypes = {
     favourited: PropTypes.bool,
     movie: PropTypes.shape({
         id: PropTypes.number,
@@ -98,8 +98,8 @@ ResultsGrid.propTypes = {
     releaseYear: PropTypes.number.isRequired,
 };
 
-ResultsGrid.defaultProps = {
+ResultsTile.defaultProps = {
     favourited: false,
 };
 
-export default ResultsGrid;
+export default ResultsTile;
