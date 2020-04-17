@@ -5,7 +5,27 @@ import PropTypes from 'prop-types';
 import PureComponent from './PureComponent';
 
 class ResultsGrid extends PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currentFavourite: this.props.favourited,
+        };
+    }
+
+    toggleFavourite = (e, movie) => {
+        const { currentFavourite } = this.state;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        this.setState({ currentFavourite: !currentFavourite }, () => {
+            this.props.toggleMovie(!currentFavourite, movie);
+        });
+    }
+
     render() {
+        const { currentFavourite } = this.state;
         const { movie, releaseYear } = this.props;
         const {
             id, title, poster_path, vote_average, vote_count, overview,
@@ -36,6 +56,16 @@ class ResultsGrid extends PureComponent {
                             { overview || 'Description coming soon...' }
                         </p>
                     </div>
+                    <span
+                        tabIndex="0"
+                        role="button"
+                        onClick={(e) => this.toggleFavourite(e, movie)}
+                        onKeyDown={(e) => {
+                            if (e.keyCode === 13) this.toggleFavourite(e, movie);
+                        }}
+                        className="btn btn-toggle-favourite">
+                        <i className={`fa${currentFavourite ? 's' : 'r'} fa-star`} />
+                    </span>
                 </div>
                 <div className="results-tile-footer">
                     <span className="results-tile-rating">
@@ -53,6 +83,7 @@ class ResultsGrid extends PureComponent {
 }
 
 ResultsGrid.propTypes = {
+    favourited: PropTypes.bool,
     movie: PropTypes.shape({
         id: PropTypes.number,
         title: PropTypes.string,
@@ -62,7 +93,12 @@ ResultsGrid.propTypes = {
         release_date: PropTypes.string,
         overview: PropTypes.string,
     }).isRequired,
+    toggleMovie: PropTypes.func.isRequired,
     releaseYear: PropTypes.number.isRequired,
+};
+
+ResultsGrid.defaultProps = {
+    favourited: false,
 };
 
 export default ResultsGrid;

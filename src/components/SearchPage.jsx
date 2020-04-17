@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { fetchMovies } from '../actions/movies';
 import { toObject, build } from '../helpers/urlQuery';
+import { getItem } from '../helpers/storage';
 
 import SearchBox from './SearchBox';
 import ResultsGrid from './ResultsGrid';
@@ -58,7 +59,8 @@ class SearchPage extends PureComponent {
                     fetchNextPage={this.fetchNextPage}
                     movies={movies}
                     moviesCount={moviesCount}
-                    noResults={this.renderNoResults()} />
+                    noResults={this.renderNoResults()}
+                    favouriteMovies={getItem('favouriteMovies')} />
             </div>
         );
     }

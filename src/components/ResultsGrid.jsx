@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { getItem, setItem, removeItem } from '../helpers/storage';
+
 import ResultsTile from './ResultsTile';
 import PureComponent from './PureComponent';
 
@@ -22,16 +24,51 @@ class ResultsGrid extends PureComponent {
         this.props.fetchNextPage(newPage);
     }
 
+    toggleMovie = (selected, movie) => {
+        const { type } = this.props;
+        const currentMovies = getItem('favouriteMovies');
+        let newMovies = [];
+
+
+        if (selected) {
+            if (currentMovies) {
+                newMovies = [...currentMovies, movie];
+            } else {
+                newMovies = [movie];
+            }
+        } else {
+            newMovies = currentMovies.filter((currentMovie) => currentMovie.id !== movie.id);
+        }
+
+        if (type === 'favourites') {
+            this.props.setNewFavourites(newMovies);
+        }
+
+        if (currentMovies && !newMovies.length) {
+            removeItem('favouriteMovies');
+        } else {
+            setItem('favouriteMovies', newMovies);
+        }
+    }
+
     renderMovies(movies) {
+        const { favouriteMovies } = this.props;
+
         return movies.map((movie) => {
             const { release_date } = movie;
             const releaseYear = release_date ? new Date(release_date).getFullYear() : 0;
+            const favourited = favouriteMovies && favouriteMovies.length
+                ? !!favouriteMovies.find((favourite) => favourite.id === movie.id)
+                : null;
+
+            console.log(favourited);
 
             return (
                 <ResultsTile
                     key={movie.id + releaseYear}
                     movie={movie}
                     releaseYear={releaseYear}
+                    favourited={favourited}
                     selectMovie={this.selectMovie}
                     toggleMovie={this.toggleMovie} />
             );
@@ -73,7 +110,13 @@ ResultsGrid.propTypes = {
             id: PropTypes.number,
         }),
     ),
+    favouriteMovies: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+        }),
+    ),
     fetchNextPage: PropTypes.func.isRequired,
+    setNewFavourites: PropTypes.func,
     moviesCount: PropTypes.number,
     type: PropTypes.string.isRequired,
 };
@@ -81,6 +124,8 @@ ResultsGrid.propTypes = {
 ResultsGrid.defaultProps = {
     movies: null,
     moviesCount: null,
+    favouriteMovies: null,
+    setNewFavourites: () => {},
 };
 
 export default ResultsGrid;
