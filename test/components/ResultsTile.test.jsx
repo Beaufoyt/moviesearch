@@ -33,7 +33,7 @@ const render = (defaultFavourited = favourited) => {
 };
 
 let resultsTile;
-describe('Given a Numbers Component', () => {
+describe('Given a ResultsTile Component', () => {
     beforeEach(() => {
         resultsTile = render();
     });
