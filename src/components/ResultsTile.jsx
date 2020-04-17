@@ -35,7 +35,7 @@ class ResultsGrid extends PureComponent {
             <button
                 id={id}
                 type="button"
-                onClick={() => {}}
+                onClick={() => this.props.selectMovie(movie)}
                 className="col-xs-12 col-md-6 col-lg-4 col-xl-3 results-tile">
                 <div className="results-tile-header">
                     <span>
@@ -93,6 +93,7 @@ ResultsGrid.propTypes = {
         release_date: PropTypes.string,
         overview: PropTypes.string,
     }).isRequired,
+    selectMovie: PropTypes.func.isRequired,
     toggleMovie: PropTypes.func.isRequired,
     releaseYear: PropTypes.number.isRequired,
 };

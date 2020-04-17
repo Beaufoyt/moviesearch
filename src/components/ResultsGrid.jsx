@@ -6,6 +6,7 @@ import LazyLoad from 'react-lazyload';
 import { getItem, setItem, removeItem } from '../helpers/storage';
 
 import ScrollLoader from './ScrollLoader';
+import MovieOverlay from './MovieOverlay';
 import ResultsTile from './ResultsTile';
 import PureComponent from './PureComponent';
 
@@ -15,6 +16,7 @@ class ResultsGrid extends PureComponent {
 
         this.state = {
             currentPage: 1,
+            currentMovieSelection: null,
         };
     }
 
@@ -26,11 +28,18 @@ class ResultsGrid extends PureComponent {
         this.props.fetchNextPage(newPage);
     }
 
+    selectMovie = (movie) => {
+        this.setState({ currentMovieSelection: movie });
+    }
+
+    closeOverlay = () => {
+        this.setState({ currentMovieSelection: null });
+    }
+
     toggleMovie = (selected, movie) => {
         const { type } = this.props;
         const currentMovies = getItem('favouriteMovies');
         let newMovies = [];
-
 
         if (selected) {
             if (currentMovies) {
@@ -88,6 +97,7 @@ class ResultsGrid extends PureComponent {
 
     render() {
         const { movies, noResults, moviesCount } = this.props;
+        const { currentMovieSelection } = this.state;
 
         return (
             <div className="results-grid">
@@ -104,6 +114,9 @@ class ResultsGrid extends PureComponent {
                             <ScrollLoader fetchNextPage={this.fetchNextPage} />
                         </LazyLoad>
                     ) : null }
+                { currentMovieSelection
+                    ? <MovieOverlay movie={currentMovieSelection} onClose={this.closeOverlay} />
+                    : null }
             </div>
         );
     }
