@@ -24,7 +24,6 @@
 }
 
 .btn-search-submit {
-    background-color: $primary-blue;
     color: white;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -32,8 +31,4 @@
     width: 46px;
     vertical-align: bottom;
     font-size: 20px;
-
-    &:hover {
-        background-color: darken($primary-blue, 5);
-    }
 }

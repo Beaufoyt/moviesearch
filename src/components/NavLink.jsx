@@ -9,9 +9,11 @@ const NavLink = ({ children, to, currentPath }) => {
 
     return (
         <Link
+            disabled={isActive}
             className={classnames('nav-link', { active: isActive })}
+            onClick={isActive ? (event) => event.preventDefault() : null}
             to={to}>
-            {children}
+            { children }
         </Link>
     );
 };

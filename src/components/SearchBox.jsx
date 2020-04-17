@@ -130,7 +130,7 @@ class SearchBox extends PureComponent {
                         placeholder="Search for movies..."
                         autoFocus
                         autoComplete="off" />
-                    <button type="submit" className="btn btn-search-submit" aria-label="search">
+                    <button type="submit" className="btn btn-primary btn-search-submit" aria-label="search">
                         <i className={`fa fa-${isLoading ? 'spinner fa-spin' : 'search'}`} />
                     </button>
                 </form>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { getItem } from '../helpers/storage';
 
@@ -36,7 +37,11 @@ class FavouritesPage extends PureComponent {
     }
 
     renderNoResults = () => {
-        return <NoResults title="Click on a movie star to add it to your favourites!" emoji="star" />;
+        return (
+            <NoResults title="Click on a movie star to add it to your favourites!" emoji="star">
+                <Link className="btn btn-primary btn-find-movies" to="/search">Search Movies</Link>
+            </NoResults>
+        );
     }
 
     render() {

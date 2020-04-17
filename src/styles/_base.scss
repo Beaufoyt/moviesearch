@@ -36,6 +36,7 @@ body, html, .app {
 }
 
 .btn {
+    text-decoration: none;
     display: inline-block;
     line-height: 1.5;
     color: #212529;
@@ -52,4 +53,17 @@ body, html, .app {
     font-size: 1rem;
     border-radius: 3px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary {
+    background-color: $primary-blue;
+    color: white;
+
+    &:hover {
+        background-color: lighten($primary-blue, 5);
+    }
+
+    &:active {
+        background-color: lighten($primary-blue, 10);
+    }
 }
