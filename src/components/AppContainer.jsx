@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 
 import Header from './Header';
+import Footer from './Footer';
 import SearchPage from './SearchPage';
 import FavouritesPage from './FavouritesPage';
 import NotFound from './NotFound';
@@ -22,6 +23,7 @@ const AppContainer = ({ location, history }) => (
                 <Route exact path="*" component={NotFound} />
             </Switch>
         </div>
+        <Footer />
     </div>
 );
 
