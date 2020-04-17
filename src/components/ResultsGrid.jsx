@@ -1,9 +1,11 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
+import LazyLoad from 'react-lazyload';
 
 import { getItem, setItem, removeItem } from '../helpers/storage';
 
+import ScrollLoader from './ScrollLoader';
 import ResultsTile from './ResultsTile';
 import PureComponent from './PureComponent';
 
@@ -61,8 +63,6 @@ class ResultsGrid extends PureComponent {
                 ? !!favouriteMovies.find((favourite) => favourite.id === movie.id)
                 : null;
 
-            console.log(favourited);
-
             return (
                 <ResultsTile
                     key={movie.id + releaseYear}
@@ -87,7 +87,7 @@ class ResultsGrid extends PureComponent {
     }
 
     render() {
-        const { movies, noResults } = this.props;
+        const { movies, noResults, moviesCount } = this.props;
 
         return (
             <div className="results-grid">
@@ -98,6 +98,12 @@ class ResultsGrid extends PureComponent {
                             { this.renderMovies(movies) }
                         </div>
                     ) : noResults }
+                { movies && movies.length < moviesCount
+                    ? (
+                        <LazyLoad unmountIfInvisible resize>
+                            <ScrollLoader fetchNextPage={this.fetchNextPage} />
+                        </LazyLoad>
+                    ) : null }
             </div>
         );
     }
