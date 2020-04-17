@@ -1,10 +1,13 @@
 import React from 'react';
 
+import Emoji from './Emoji';
+
 const NotFound = () => (
     <div className="not-found">
-        <h3>
+        <h1>
             404&nbsp;
-        </h3>
+            <Emoji emojiKey="cry" />
+        </h1>
     </div>
 );
 
