@@ -5,7 +5,16 @@ const defaultState = {
     movies: null,
     loading: false,
     error: null,
+    moviesCount: null,
     currentSearchQuery: '',
+};
+
+const addMovies = (moviesList, newMovies, page) => {
+    if (moviesList && page > 1) {
+        return [...moviesList, ...newMovies];
+    }
+
+    return (newMovies);
 };
 
 const movies = (state = defaultState, action) => {
@@ -19,13 +28,20 @@ const movies = (state = defaultState, action) => {
     case types.MOVIES_SUCCESS:
         return newState(state, {
             loading: false,
-            movies: action.movies,
+            movies: addMovies(state.movies, action.moviesResult.results, action.page),
+            moviesCount: action.moviesResult.total_results,
+            currentSearchQuery: action.currentSearchQuery,
         });
 
     case types.MOVIES_ERROR:
         return newState(state, {
             loading: false,
             error: action.errorMessage,
+        });
+
+    case types.MOVIES_CANCEL:
+        return newState(state, {
+            loading: false,
         });
 
     default: return state;
