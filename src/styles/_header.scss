@@ -1,0 +1,38 @@
+.header {
+    height: $header-height;
+    background-color: $bg-dark;
+    padding: 8px 24px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+
+    .brand-logo {
+        height: 42px;
+        display: inline-block;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .header-nav {
+        float: right;
+    }
+
+    .nav-link {
+        line-height: 42px;
+        text-decoration: none;
+        color: $primary-off-white;
+        font-weight: 500;
+        font-size: 16px;
+        margin-left: 10px;
+
+        &.active {
+            color: $white;
+        }
+
+        &:hover {
+            color: $white;
+        }
+    }
+}
