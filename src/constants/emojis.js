@@ -3,6 +3,10 @@ const emojis = {
         label: 'Love Heart',
         emoji: '❤️‍',
     },
+    constructionWorker: {
+        label: 'Construction Worker',
+        emoji: '👷',
+    },
     cry: {
         label: 'Cry',
         emoji: '😢‍',

@@ -156,6 +156,34 @@
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
     z-index: 1000;
+
+    .overlay-movie-content {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        max-width: 500px;
+        background-color: $primary-off-white;
+        border-radius: 3px;
+        transform: translate(-50%, -50%);
+        padding: 30px;
+
+        .btn-close-movie-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        h3 {
+            margin: 0 0 5px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+    }
 }
 
 .loader-infinite {
